@@ -1,0 +1,26 @@
+﻿@model List<Models_OnlineShop.EF.Menu>
+@using OnlineShop.Common
+<p class="log">
+
+    @{
+        var session = (UserLogin)Session[OnlineShop.Common.CommonConstants.USER_SESSION];
+    }
+
+    @if (session == null)
+    {
+
+        foreach (var item in Model)
+        {
+            <a href="@item.Link">@item.Text</a>
+        }
+
+    }
+    else
+    {
+
+        <a> Xin chào: @session.UserName</a>
+        <a>
+            @Html.ActionLink("Đăng xuất", "Logout", "User")
+        </a>
+    }
+</p>

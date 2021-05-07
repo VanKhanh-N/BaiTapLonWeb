@@ -1,0 +1,47 @@
+﻿@model OnlineShop.Models.LoginModel
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="account">
+    <div class="container">
+        <h1>Account</h1>
+        <div class="account_grid">
+            <div class="col-md-6 login-right">
+                @using (Html.BeginForm("Login", "User", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="form-group">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    </div>
+
+                    <span>Tài Khoản </span>
+                    @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                    @Html.TextBoxFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control" } })
+
+                    <span>Mật Khẩu</span>
+                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                    @Html.PasswordFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+
+                    <div class="word-in">
+                        <input type="submit" value="Login">
+                        <a class="forgot" href="#">Forgot Your Password?</a>
+                    </div>
+
+                    <div class="word-in">
+                        <a href="/dang-nhap-facebook" class="btn btn-facebook "><i class="fa fa-facebook"></i> Đăng nhập bằng Facebook</a>
+                    </div>
+                   
+                }
+            </div>
+            <div class="col-md-6 login-left">
+                <h4>NEW CUSTOMERS</h4>
+                <p>By creating an account with our store, you will be able to move through the checkout process faster, store multiple shipping addresses, view and track your orders in your account and more.</p>
+                <a class="acount-btn" href="/dang-ky">Create an Account</a>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,73 @@
+﻿@model PagedList.IPagedList<Models_OnlineShop.EF.Product>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="single">
+    <div class="container">
+        <div class="col-md-12">
+            <div class="col-md-9 grid">
+                <div class="content-top">
+                    <h1>Danh sách sản phẩm</h1>
+                    <div class="content-top1">
+                        @foreach (var item in Model)
+                        {
+                            var DetailsURL = "/chi-tiet/" + item.MetaTiltle + "-" + item.ID;
+                            <div class="col-md-4 col-md3">
+                                <div class="col-md1 simpleCart_shelfItem">
+                                    <a href="@DetailsURL">
+                                        <img class="img-responsive" src="@item.Image" alt="" />
+                                    </a>
+                                    <h3><a href="@DetailsURL">@item.Name</a></h3>
+                                    <div class="price">
+                                        <h5 class="item_price">@item.Price VND</h5>
+                                        <a href="#" class="item_add">Add To Cart</a>
+                                        <div class="clearfix"> </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+                        <div class="clearfix"> </div>
+                    </div>
+                    @Html.PagedListPager(Model, PageNumber => Url.Action("Index", new { PageNumber}))
+                </div>
+            </div>
+
+
+        <div class="col-md-3 product-bottom">
+            @{ Html.RenderAction("ProductCategory", "Product");}
+
+            <!--initiate accordion-->
+            <script type="text/javascript">
+                $(function () {
+                    var menu_ul = $('.menu-drop > li > ul'),
+                        menu_a = $('.menu-drop > li > a');
+                    menu_ul.hide();
+                    menu_a.click(function (e) {
+                        e.preventDefault();
+                        if (!$(this).hasClass('active')) {
+                            menu_a.removeClass('active');
+                            menu_ul.filter(':visible').slideUp('normal');
+                            $(this).addClass('active').next().stop(true, true).slideDown('normal');
+                        } else {
+                            $(this).removeClass('active');
+                            $(this).next().stop(true, true).slideUp('normal');
+                        }
+                    });
+
+                });
+            </script>
+            <!--//menu-->
+            <!--seller-->
+            @{ Html.RenderAction("Seller", "Product");}          
+            <!--//seller-->
+            <!--tag-->
+            @{ Html.RenderAction("Tags", "Tag");}
+           
+        </div>
+
+        </div>
+    </div>
+</div>

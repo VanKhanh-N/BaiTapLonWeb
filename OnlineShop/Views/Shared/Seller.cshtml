@@ -1,0 +1,19 @@
+﻿@model PagedList.IPagedList<Models_OnlineShop.EF.Product>
+@using PagedList.Mvc;
+<div class="product-bottom">
+    <h3 class="cate">Best Sellers</h3>
+    @foreach (var item in Model)
+    {
+        <div class="product-go">
+            <div class=" fashion-grid">
+                <a href="/chi-tiet/@item.MetaTiltle-@item.ID"><img class="img-responsive " src="@item.Image" alt=""></a>
+            </div>
+            <div class=" fashion-grid1">
+                <h6 class="best2"><a href="/chi-tiet/@item.MetaTiltle-@item.ID">@item.Name </a></h6>
+                <span class=" price-in1">@item.Price</span>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+    }
+
+</div>

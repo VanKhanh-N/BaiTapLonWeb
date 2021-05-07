@@ -1,0 +1,17 @@
+﻿@model Models_OnlineShop.EF.Footer
+<div class="container">
+    <div class="footer-top">
+        <div class="col-md-8 top-footer">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3724.1132409229645!2d105.80123181475537!3d21.028154485998684!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ab424a50fff9%3A0xbe3a7f3670c0a45f!2zVHLGsOG7nW5nIMSQ4bqhaSBo4buNYyBHaWFvIHRow7RuZyBW4bqtbiB04bqjaSAoVVRDKQ!5e0!3m2!1svi!2s!4v1618163841378!5m2!1svi!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+        <div class="col-md-4 top-footer1">
+            <h2>Newsletter</h2>
+            <form>
+                <input type="text" value="" onfocus="this.value='';" onblur="if (this.value == '') {this.value ='';}">
+                <input type="submit" value="SUBSCRIBE">
+            </form>
+        </div>
+        <div class="clearfix"> </div>
+    </div>
+</div>
+@Html.Raw(Model.Content)

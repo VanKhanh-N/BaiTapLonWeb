@@ -1,0 +1,85 @@
+﻿@model List<Models_OnlineShop.EF.Product>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var model2 = (List<Models_OnlineShop.EF.Product>)ViewBag.Product;
+    var slide = (List<Models_OnlineShop.EF.Slide>)ViewBag.Slide;
+}
+@section JsFooter{
+
+    <script src="~/Assets/client/js/controller/cartcontroller.js"></script>
+}
+@section Slide{
+    <div class="banner">
+        <div class="col-sm-3 banner-mat">
+            <img class="img-responsive" src="/Assets/client/images/ba1.jpg" alt="">
+        </div>
+        <div class="col-sm-6 matter-banner">
+            <div class="slider">
+                <div class="callbacks_container">
+                    <ul class="rslides" id="slider">
+                        @foreach (var item in slide)
+                        {
+                            <li>
+                                <img src="@item.Image" alt="">
+                            </li>
+                        }
+                      
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3 banner-mat">
+            <img class="img-responsive" src="/Assets/client/images/ba.jpg" alt="">
+        </div>
+        <div class="clearfix"> </div>
+    </div>
+
+}
+<div class="container">
+    <div class="content-top">
+        <h1>Recent Products</h1>
+        <div class="content-top1 row">
+            @foreach (var item in Model)
+            {
+                <div class="col-md-3 col-md2">
+                    <div class="col-md1 ">
+                        <a href="/chi-tiet/@item.MetaTiltle-@item.ID">
+                            <img class="img-responsive" src="@item.Image" height:207px />
+                        </a>
+                        <h3><a href="/chi-tiet/@item.MetaTiltle-@item.ID">@item.Name</a></h3>
+                        <div class="price">
+                            <h5 class="item_price">@item.Price đ</h5>
+                            <a href="#" id="additem" data-id="@item.ID" data-qty="1" class="item_add">Add To Cart</a>
+                            <div class="clearfix"> </div>
+                        </div>
+
+                    </div>
+                </div>
+            }
+            <div class="clearfix"> </div>
+        </div>
+        <div class="content-top1">
+            @foreach (var item in model2)
+            {
+                <div class="col-md-3 col-md2">
+                    <div class="col-md1 ">
+                        <a href="/chi-tiet/@item.MetaTiltle-@item.ID">
+                            <img class="img-responsive" src="@item.Image" height:207px />
+                        </a>
+                        <h3><a href="/chi-tiet/@item.MetaTiltle-@item.ID">@item.Name</a></h3>
+                        <div class="price">
+                            <h5 class="item_price">@item.Price đ</h5>
+                            <a href="#" id="additem" data-id="@item.ID" data-qty="1" class="item_add">Add To Cart</a>
+                            <div class="clearfix"> </div>
+                        </div>
+
+                    </div>
+                </div>
+            }
+
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+</div>
+

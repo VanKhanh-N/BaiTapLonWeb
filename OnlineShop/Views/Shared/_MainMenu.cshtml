@@ -1,0 +1,77 @@
+﻿@model List<Models_OnlineShop.EF.Menu>
+<div class="head-top">
+    <div class="col-sm-2 number">
+        <span><i class="glyphicon glyphicon-phone"></i>085 596 234</span>
+    </div>
+    <div class="col-sm-8 h_menu4">
+        <ul class="memenu skyblue">
+            @foreach (var item in Model)
+            {
+                var child = Model.Where(x => x.ParentID == item.ID);
+                if (child.Count() == 0 && item.ParentID == 0)
+                {
+                    <li class=" grid"><a href="@item.Link">@item.Text</a></li>
+                }
+
+                if (child.Count() > 0)
+                {
+                    <li class=" grid">
+                        <a href="">@item.Text</a>
+                        <div class="mepanel">
+                            <div class="row">
+                                <div class="col1">
+                                    <div class="h_nav">
+                                        <ul>
+                                            @foreach (var childitem in child)
+                                            {
+                                                var url = "/san-pham" + childitem.Link + "-" + childitem.ID + "-" + 2;
+                                                <li class="mainmenu"><a href=@url>@childitem.Text</a></li>
+                                            }
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                }
+            }
+
+
+        </ul>
+    </div>
+    <div class="col-sm-2 search">
+        <a class="play-icon popup-with-zoom-anim" href="#small-dialog"><i class="glyphicon glyphicon-search"> </i> </a>
+    </div>
+    <div class="clearfix"> </div>
+    <!---pop-up-box---->
+    @*<script type="text/javascript" src="/Assets/client/js/modernizr.custom.min.js"></script>*@
+    <link href="/Assets/client/css/popuo-box.css" rel="stylesheet" type="text/css" media="all" />
+    <script src="/Assets/client/js/jquery.magnific-popup.js" type="text/javascript"></script>
+    <!---//pop-up-box---->
+    <div id="small-dialog" class="mfp-hide">
+        <div class="search-top">
+            <form class="login" action="/tim-kiem" method="get">
+                <input type="submit" value="">
+                <input type="text" value="Gõ từ khóa" id="txtKeyword" name="keyword" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}">
+            </form>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function () {
+            $('.popup-with-zoom-anim').magnificPopup({
+                type: 'inline',
+                fixedContentPos: false,
+                fixedBgPos: true,
+                overflowY: 'auto',
+                closeBtnInside: true,
+                preloader: false,
+                midClick: true,
+                removalDelay: 300,
+                mainClass: 'my-mfp-zoom-in'
+            });
+
+        });
+    </script>
+    <!---->
+</div>

@@ -1,0 +1,19 @@
+﻿@model List<OnlineShop.Models.CartItem>
+@{
+    int count = 0;
+    foreach(var item in Model)
+    {
+        count += item.Quantity;
+    }
+}
+<div class="cart box_1">
+    <a href="/gio-hang">
+
+        <div class="total"><span class="count">@count</span></div>
+
+
+        <img src="/Assets/client/images/cart.png" alt="" />
+    </a>
+    @*<p><a href="#" class="" id="DeleteAll">Empty Cart</a></p>*@
+
+</div>

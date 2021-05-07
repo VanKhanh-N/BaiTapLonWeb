@@ -1,0 +1,113 @@
+﻿@model PagedList.IPagedList<Models_OnlineShop.EF.Menu>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Menu";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    var menutype = (List<Models_OnlineShop.EF.MenuType>)ViewBag.Menutype;
+    var mainMenu = (List<Models_OnlineShop.EF.Menu>)ViewBag.ListMenu;
+}
+@section header{
+    Menu
+}
+
+@section jsFooter{
+    <script src="~/Assets/admin/js/controller/statuscontroller.js?t=1491313943549"></script>
+
+}
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Menu
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+                @using (Html.BeginForm("Index", "Menu", FormMethod.Get))
+                {
+                    <div class="row form-group">
+                        <div class="col-lg-12">
+                            <div class="col-md-4">
+                                <input type="text" value="@ViewBag.searchString" class="form-control" name="searchString" />
+                            </div>
+                            <div class="col-md-4">
+                                <button type="submit" class="btn btn-success">Tìm kiếm</button>
+                                <a class="btn btn-primary" href="/Admin/Menu/Create">Thêm</a>
+                            </div>
+
+
+                        </div>
+                    </div>
+                }
+
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead>
+                            <tr>
+
+                                <th>Tên</th>
+                                <th>Kiểu</th>
+                                <th>Danh mục</th>
+                                <th>Trạng thái</th>
+                                <th>#</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                var menu = "";
+                                var danhmuc = "";
+                                foreach (var type in menutype)
+                                {
+                                    if (item.TypeID == type.ID)
+                                    {
+                                        menu = type.Name;
+                                    }
+                                }
+                                foreach (var type in mainMenu)
+                                {
+                                    if (item.ParentID == type.ID)
+                                    {
+                                        danhmuc = type.Text;
+                                    }
+                                }
+                                if (danhmuc.Equals(""))
+                                {
+                                    danhmuc = "Trống";
+                                }
+                                <tr id="row_@item.ID">
+
+                                    <td>@item.Text</td>
+                                    <td>@menu</td>
+                                    <td>@danhmuc</td>
+                                    <td>
+                                        <a href="#" class="btn-active-menu" data-id="@item.ID">@(item.Status?"Kích hoạt":"Khóa")</a>
+                                    </td>
+                                    <td>
+                                        <a href="/Admin/Menu/Edit/@item.ID">Sửa</a> |
+                                        @Ajax.ActionLink("Xóa", "Delete", new { @id = item.ID }, new AjaxOptions
+                                   {
+                                       Confirm = "Bạn muốn xóa bản ghi này?",
+                                       OnComplete = "$('#row_" + @item.ID + "').remove()",
+                                       //remove dòng chứa id này trong view
+                                       HttpMethod = "Delete"
+
+                                   })
+
+
+                                    </td>
+                                </tr>
+
+                            }
+
+
+                        </tbody>
+                    </table>
+                    @Html.PagedListPager(Model, page => Url.Action("Index", new { page, @searchString = @ViewBag.searchString }))
+                </div>
+                <!-- /.table-responsive -->
+            </div>
+            <!-- /.panel-body -->
+        </div>
+        <!-- /.panel -->
+    </div>
+</div>

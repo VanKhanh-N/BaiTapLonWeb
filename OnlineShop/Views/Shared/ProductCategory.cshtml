@@ -1,0 +1,29 @@
+﻿@model List<Models_OnlineShop.EF.ProductCategory>
+<div class=" rsidebar span_1_of_left">
+    <h3 class="cate">Danh mục</h3>
+    <ul class="menu-drop">
+        @foreach (var item in Model)
+        {
+            var child = Model.Where(x => x.ParentID == item.ID);
+            if (item.ParentID == 0)
+            {
+                <li class="item1">
+                    <a href="/san-pham/@item.MetaTiltle-@item.ID-1">@item.Name </a>
+                    @if (child.Count() > 0)
+                    {
+                        <ul class="cute">
+                            @foreach (var childitem in child)
+                            {
+                                <li class="subitem1"><a href="/san-pham/@childitem.MetaTiltle-@childitem.ID-1">@childitem.Name </a></li>
+                            }
+                        </ul>
+                    }
+
+                </li>
+            }
+
+        }
+
+       
+    </ul>
+</div>

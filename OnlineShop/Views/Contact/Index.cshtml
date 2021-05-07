@@ -1,0 +1,61 @@
+﻿@model Models_OnlineShop.EF.Contact
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section JsFooter{
+    <script src="/Assets/client/js/controller/contactController.js"></script>
+}
+<div class="contact">
+    <div class="container">
+        <h1>Liên Hệ</h1>
+
+        <div class="contact-grids">
+            <div class="contact-form">
+                <form>
+                    <div class="contact-bottom">
+                        <div class="col-md-4 in-contact">
+                            <span>Tên</span>
+                            <input type="text" id="txtName">
+                        </div>
+                        <div class="col-md-4 in-contact">
+                            <span>Email</span>
+                            <input type="text" id="txtEmail">
+                        </div>
+                        <div class="col-md-4 in-contact">
+                            <span>Số điện thoại</span>
+                            <input type="text" id="txtPhone">
+                        </div>
+                        <div class="col-md-12 in-contact">
+                            <span>Địa chỉ</span>
+                            <input type="text" id="txtAddress">
+                        </div>
+                        <div class="clearfix"> </div>
+                    </div>
+
+                    <div class="clearfix"> </div>
+                    <div class="contact-bottom-top">
+                        <span>Nội dung</span>
+                        <textarea id="txtContent"></textarea>
+                    </div>
+                    <input type="submit" value="Gửi" id="send">
+                </form>
+            </div>
+            <div class="address">
+                <div class=" address-more">
+                    <h2>Địa chỉ</h2>
+                    <div class="col-md-12 address-grid">
+                        <i class="glyphicon glyphicon-map-marker"></i>
+                        <div class="address1">
+                            @Html.Raw(Model.Content)
+                        </div>
+                        <div class="clearfix"> </div>
+                    </div>
+             
+                    <div class="clearfix"> </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,17 @@
+E:\Web\Common\bin\Debug\Common.dll
+E:\Web\Common\bin\Debug\Common.pdb
+E:\Web\Common\obj\Debug\Common.csproj.CoreCompileInputs.cache
+E:\Web\Common\obj\Debug\Common.dll
+E:\Web\Common\obj\Debug\Common.pdb
+D:\Web\Common\bin\Debug\Common.dll
+D:\Web\Common\bin\Debug\Common.pdb
+D:\Web\Common\obj\Debug\Common.csprojAssemblyReference.cache
+D:\Web\Common\obj\Debug\Common.csproj.CoreCompileInputs.cache
+D:\Web\Common\obj\Debug\Common.dll
+D:\Web\Common\obj\Debug\Common.pdb
+F:\Web\Common\bin\Debug\Common.dll
+F:\Web\Common\bin\Debug\Common.pdb
+F:\Web\Common\obj\Debug\Common.csprojAssemblyReference.cache
+F:\Web\Common\obj\Debug\Common.csproj.CoreCompileInputs.cache
+F:\Web\Common\obj\Debug\Common.dll
+F:\Web\Common\obj\Debug\Common.pdb

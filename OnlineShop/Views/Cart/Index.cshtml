@@ -1,0 +1,56 @@
+﻿@model List<OnlineShop.Models.CartItem>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section JsFooter{
+
+    <script src="~/Assets/client/js/controller/cartcontroller.js"></script>
+}
+<div class="container">
+    <div class="check-out">
+        <h1>Giỏ hàng</h1>
+        @if (Model.Count > 0)
+        {
+            <table>
+                <tr>
+                    <th>Sản phẩm</th>
+                    <th>Số lượng</th>
+                    <th>Giá</th>
+                    <th>Chi tiết giao hàng</th>
+                    <th>Tổng tiền</th>
+                    <th>#</th>
+                </tr>
+                @foreach (var item in Model)
+                {
+            <tr>
+                <td class="ring-in">
+                    <a href="single.html" class="at-in"><img src="@item.product.Image" class="img-responsive" alt=""></a>
+                    <div class="sed">
+                        <h5>@item.product.Name</h5>
+                        <p>(@item.product.Description) </p>
+
+                    </div>
+                    <div class="clearfix"> </div>
+                </td>              
+                <th class="check"><input type="text" class="txtQuantity" data-id="@item.product.ID" value="@item.Quantity" /></th>
+                <td>@item.product.Price.GetValueOrDefault(0).ToString("N0")</td>
+                <td>FREE SHIPPING</td>
+                <td>@((item.product.Price.GetValueOrDefault(0)*item.Quantity).ToString("N0"))</td>
+                <td><a href="#" id="btnXoa" data-id="@item.product.ID" class="to-buy btnXoa">X</a></td>
+            </tr>
+
+                }
+            </table>
+             <a href="#" class=" to-buy" type="button" id="btnDatHang">Đặt Hàng</a>
+            <a href="#" class=" to-buy" type="button" id="btnCapNhat">Cập Nhật</a>
+            <div class="clearfix"> </div>
+        }
+        else
+        {
+
+        }
+
+    </div>
+</div>
+

@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewBag.Title = "Payment";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section JsFooter{
+
+    <script src="~/Assets/client/js/controller/cartcontroller.js"></script>
+}
+<div class="contact">
+    <div class="container">
+        <h1>Thanh Toán</h1>
+
+        <div class="contact-grids">
+            <div class="contact-form">
+                <form>
+                    <div class="contact-bottom">
+                        <div class="col-md-4 in-contact">
+                            <span>Tên</span>
+                            <input type="text" id="txtName">
+                        </div>
+                        <div class="col-md-4 in-contact">
+                            <span>Email</span>
+                            <input type="text" id="txtEmail">
+                        </div>
+                        <div class="col-md-4 in-contact">
+                            <span>Điện thoại</span>
+                            <input type="text" id="txtPhone">
+                        </div>
+                        <div class="clearfix"> </div>
+                    </div>
+
+                    <div class="contact-bottom-top">
+                        <span>Địa chỉ</span>
+                        <textarea  id="txtAddress"> </textarea>
+                    </div>
+                    <input type="submit" value="Thanh Toán" id="Thanhtoan" >
+
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
