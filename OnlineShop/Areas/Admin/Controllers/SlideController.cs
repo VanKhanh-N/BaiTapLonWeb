@@ -35,7 +35,7 @@ namespace OnlineShop.Areas.Admin.Controllers
             {
                 var session = (UserLogin)Session[CommonConstants.USER_SESSION];
                 slide.CreatedDate = DateTime.Now;
-                slide.CreatedBy = session.UserName;
+                slide.CreatedBy = session.UserID + "";
                 //var model = new SlideDao().ViewDetailTopDisplay();
                 //slide.DisplayOrder = model.DisplayOrder + 1;
                 if (string.IsNullOrEmpty(slide.Link)) slide.Link = "/";
@@ -87,7 +87,7 @@ namespace OnlineShop.Areas.Admin.Controllers
             {
                 var session = (UserLogin)Session[CommonConstants.USER_SESSION];
                 slide.ModifyDate = DateTime.Now;
-                slide.ModifyBy = session.UserName;
+                slide.ModifyBy = session.UserID + "";
                 if (string.IsNullOrEmpty(slide.Link)) slide.Link = "/";
                 var dao = new SlideDao();
                 var detail = dao.Update(slide);

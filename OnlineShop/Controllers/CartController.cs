@@ -38,6 +38,9 @@ namespace OnlineShop.Controllers
         public JsonResult Payment(string shipName, string shipPhone, string shipAddress, string shipEmail)
         {
             var order = new Order();
+            var user = (UserLogin)Session[CommonConstants.USER_SESSION];
+            if (user != null)
+                order.CustomerID = user.UserID;
             order.CreatedDate = DateTime.Now;
             order.ShipAddress = shipAddress;
             order.ShipEmail = shipEmail;

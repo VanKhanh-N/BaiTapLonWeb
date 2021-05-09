@@ -37,7 +37,7 @@ namespace OnlineShop.Areas.Admin.Controllers
                 var session = (UserLogin)Session[CommonConstants.USER_SESSION];
                 product.CreatedDate = DateTime.Now;
                 product.MetaTiltle = StringHelper.ToUnsignString(product.Name);
-                product.CreatedBy = session.UserName;
+                product.CreatedBy = session.UserID + "";
                 product.ShowOnHome = false;
                 var dao = new ProductDao();
                 long id = dao.insert(product);
@@ -91,7 +91,7 @@ namespace OnlineShop.Areas.Admin.Controllers
                 var session = (UserLogin)Session[CommonConstants.USER_SESSION];
                 product.ModifyDate = DateTime.Now;
                 product.MetaTiltle = StringHelper.ToUnsignString(product.Name);
-                product.ModifyBy = session.UserName;
+                product.ModifyBy = session.UserID + "";
                 product.ShowOnHome = false;
                 var dao = new ProductDao();
                var detail = dao.update(product);

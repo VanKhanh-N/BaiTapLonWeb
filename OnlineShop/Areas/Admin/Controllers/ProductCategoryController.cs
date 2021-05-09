@@ -51,10 +51,10 @@ namespace OnlineShop.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                category.CreatedDate = DateTime.Now;
+                category.ModifyDate = DateTime.Now;
                 var session = (UserLogin)Session[CommonConstants.USER_SESSION];
                 category.MetaTiltle = StringHelper.ToUnsignString(category.Name);
-                category.CreatedBy = session.UserName;
+                category.ModifyBy = session.UserID + "";
                 var dao = new ProductCategoryDao();
                 var detail = dao.update(category);
 
@@ -88,7 +88,7 @@ namespace OnlineShop.Areas.Admin.Controllers
             {
                 var session = (UserLogin)Session[CommonConstants.USER_SESSION];
                 category.CreatedDate = DateTime.Now;
-                category.CreatedBy = session.UserName;
+                category.CreatedBy = session.UserID + "";
                 category.DisplayOrder = 1;
                 category.MetaTiltle = StringHelper.ToUnsignString(category.Name);
                 long id = new ProductCategoryDao().insert(category);

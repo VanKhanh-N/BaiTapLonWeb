@@ -36,7 +36,7 @@ namespace OnlineShop.Areas.Admin.Controllers
             {
                 var session = (UserLogin)Session[CommonConstants.USER_SESSION];
                 category.CreatedDate = DateTime.Now;
-                category.CreatedBy = session.UserName;
+                category.CreatedBy = session.UserID+"";
                 category.MetaTiltle = StringHelper.ToUnsignString(category.Name);
 
                 long id = new CategoryDao().insert(category);

@@ -22,7 +22,7 @@ namespace OnlineShop.Areas.Admin.Controllers
             return View(model);
         }
         [HttpGet]
-        [HasCredential(RoleID = "ADD_USER")]
+        //[HasCredential(RoleID = "ADD_USER")]
         public ActionResult Create()
         {
             return View();
