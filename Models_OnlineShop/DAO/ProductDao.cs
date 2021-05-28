@@ -145,7 +145,7 @@ namespace Models_OnlineShop.DAO
         }
         public List<ProductViewModel> Search(string keyword, ref int totalRecord, int pageIndex = 1, int pageSize = 2)
         {
-            totalRecord = db.Products.Where(x => x.Name == keyword).Count();
+            totalRecord = db.Products.Where(x => x.Name.Contains(keyword) && x.Status==true).Count();
             var model = (from a in db.Products
                          join b in db.ProductCategories
                          on a.CategoryID equals b.ID
@@ -171,8 +171,9 @@ namespace Models_OnlineShop.DAO
                              MetaTitle = x.MetaTitle,
                              Price = x.Price
                          });
-            model.OrderByDescending(x => x.CreatedDate).Skip((pageIndex - 1) * pageSize).Take(pageSize);
-            return model.ToList();
+          
+            List<ProductViewModel> pro =model.OrderByDescending(x => x.CreatedDate).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
+            return pro;
         }
         public void UpdateImages(long ProductID,string image)
         {

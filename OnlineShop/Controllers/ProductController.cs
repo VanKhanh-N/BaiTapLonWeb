@@ -40,7 +40,7 @@ namespace OnlineShop.Controllers
                 status = true
             },JsonRequestBehavior.AllowGet); 
         }
-        public ActionResult Search(string keyword, int page = 1, int pageSize = 9)
+        public ActionResult Search(string keyword, int page = 1, int pageSize = 4)
         {       
             int totalRecord = 0;
             var product = new ProductDao().Search(keyword, ref totalRecord, page, pageSize);
@@ -54,7 +54,7 @@ namespace OnlineShop.Controllers
             int maxPage = 5;
             int totalPage = 0;
 
-            totalPage = (int)Math.Ceiling((double)(totalRecord / pageSize));
+            totalPage = (totalRecord%pageSize==0)?totalRecord/pageSize:totalRecord/pageSize+1;
             ViewBag.TotalPage = totalPage;
             ViewBag.MaxPage = maxPage;
             ViewBag.First = 1;

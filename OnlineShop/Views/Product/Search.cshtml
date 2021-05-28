@@ -28,8 +28,9 @@
                     </div>
                 }
                 <div class="clear"></div>
-                if (ViewBag.TotalPage > 1)
-                {
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    @if (ViewBag.TotalPage > 1)
+                    {
                     var pageDisplay = (int)ViewBag.MaxPage;
                     int totalPage = (int)ViewBag.TotalPage;
                     int currentPage = ((int)ViewBag.Page);
@@ -38,7 +39,7 @@
                     var startPageIndex = Math.Max(1, currentPage - pageDisplay / 2);
                     var endPageIndex = Math.Min(totalPage, currentPage + pageDisplay / 2);
 
-                    var link = "/tin-kiem?keyword=" + ViewBag.Keyword;
+                    var link = "/tim-kiem?keyword=" + ViewBag.Keyword;
                     <nav>
                         <ul class="pagination clear">
                             @if (currentPage > ViewBag.First)
@@ -68,34 +69,18 @@
 
                         </ul>
                     </nav>
-                }
+                    }
+                </div>
+
             }
         </div>
+
 
 
         <div class="col-md-3 product-bottom">
             @{ Html.RenderAction("ProductCategory", "Product");}
 
-            <!--initiate accordion-->
-            <script type="text/javascript">
-                $(function () {
-                    var menu_ul = $('.menu-drop > li > ul'),
-                        menu_a = $('.menu-drop > li > a');
-                    menu_ul.hide();
-                    menu_a.click(function (e) {
-                        e.preventDefault();
-                        if (!$(this).hasClass('active')) {
-                            menu_a.removeClass('active');
-                            menu_ul.filter(':visible').slideUp('normal');
-                            $(this).addClass('active').next().stop(true, true).slideDown('normal');
-                        } else {
-                            $(this).removeClass('active');
-                            $(this).next().stop(true, true).slideUp('normal');
-                        }
-                    });
 
-                });
-            </script>
             <!--//menu-->
             <!--seller-->
             @{ Html.RenderAction("Seller", "Product");}
@@ -104,7 +89,27 @@
             @{ Html.RenderAction("Tags", "Tag");}
 
         </div>
+      
+        <!--initiate accordion-->
+        <script type="text/javascript">
+            $(function () {
+                var menu_ul = $('.menu-drop > li > ul'),
+                    menu_a = $('.menu-drop > li > a');
+                menu_ul.hide();
+                menu_a.click(function (e) {
+                    e.preventDefault();
+                    if (!$(this).hasClass('active')) {
+                        menu_a.removeClass('active');
+                        menu_ul.filter(':visible').slideUp('normal');
+                        $(this).addClass('active').next().stop(true, true).slideDown('normal');
+                    } else {
+                        $(this).removeClass('active');
+                        $(this).next().stop(true, true).slideUp('normal');
+                    }
+                });
+
+            });
+        </script>
 
     </div>
-</div>
 </div>
